@@ -296,7 +296,7 @@ async def VidWatermarkAdder(bot, cmd):
 				filename = output_vid.split("/")[-1].replace("_"," ")
 				text_edit = f"File Uploaded to Streamtape!\n\n**File Name:** `{filename}`\n**Size:** `{humanbytes(file_size)}`\n**Link:** `{download_link}`"
 				await editable.edit(text_edit, parse_mode="HTML", disable_web_page_preview=True, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Open Link", url=download_link)]]))
-				await logs_msg.edit("Successfully Uploaded File to Streamtape!\n\nI am Free Now!", parse_mode="HTML", disable_web_page_preview=True)
+				await logs_msg.edit("Successfully Uploaded File to Streamtape!\n\nI am Free Now!", disable_web_page_preview=True)
 		except Exception as e:
 			print(f"Error: {e}")
 			await editable.edit("Sorry, Something went wrong!\n\nCan't Upload to Streamtape. You can report at [Support Group](https://t.me/linux_repo).")
@@ -411,7 +411,7 @@ async def button(bot, cmd: CallbackQuery):
 				return
 		await cmd.message.edit(
 			text=Config.USAGE_WATERMARK_ADDER,
-			parse_mode="HTML",
+			#parse_mode="HTML",
 			reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Developer", url="https://t.me/AbirHasan2005"), InlineKeyboardButton("Support Group", url="https://t.me/DevsZone")], [InlineKeyboardButton("Bots Channel", url="https://t.me/Discovery_Updates")]]),
 			disable_web_page_preview=True
 		)
@@ -457,7 +457,7 @@ async def button(bot, cmd: CallbackQuery):
 					disable_web_page_preview=True
 				)
 				return
-		await bot.send_message(chat_id=Config.LOG_CHANNEL, text=f"#SETTINGS_SET: [{cmd.from_user.first_name}](tg://user?id={cmd.from_user.id}) Changed Settings!\n\n**User ID:** #id{cmd.from_user.id}\n**Data:** `{cb_data}`", parse_mode="HTML", disable_web_page_preview=True, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Ban User", callback_data=f"ban_{cmd.from_user.id}")]]))
+		await bot.send_message(chat_id=Config.LOG_CHANNEL, text=f"#SETTINGS_SET: [{cmd.from_user.first_name}](tg://user?id={cmd.from_user.id}) Changed Settings!\n\n**User ID:** #id{cmd.from_user.id}\n**Data:** `{cb_data}`", disable_web_page_preview=True, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Ban User", callback_data=f"ban_{cmd.from_user.id}")]]))
 		new_position = cb_data.split("_", 1)[1]
 		if cb_data.startswith("position_"):
 			await db.set_position(cmd.from_user.id, new_position)
